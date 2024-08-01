@@ -1,43 +1,93 @@
 class Solution {
+      
+    // public List<List<Integer>> threeSum(int[] arr) {
 
-    public List<List<Integer>> threeSum(int[] arr) {
+    //     Set<List<Integer>> set = new HashSet<>();
 
-        Set<List<Integer>> set = new HashSet<>();
+    //     Arrays.sort(arr);
 
-        Arrays.sort(arr);
+    //     for(int i=0;i<arr.length;i++){
 
-        for(int i=0;i<arr.length;i++){
+    //         int left = i+1;
+    //         int right = arr.length - 1;
 
-            int left = i+1;
-            int right = arr.length - 1;
+    //         while(left < right){
 
-            while(left < right){
+    //             int sum = arr[i] + arr[left] + arr[right];
 
-                int sum = arr[i] + arr[left] + arr[right];
 
-                if(sum > 0){
-                    right--;
-                }else if(sum < 0){
-                    left++;
-                }else{
-                    List<Integer> list = new ArrayList<>();
-                    list.add(arr[i]);
-                    list.add(arr[left]);
-                    list.add(arr[right]);
+    //             if(sum > 0){
+    //                 right--;
+    //             }else if(sum < 0){
+    //                 left++;
+    //             }else{
+    //                 List<Integer> list = new ArrayList<>();
+    //                 list.add(arr[i]);
+    //                 list.add(arr[left]);
+    //                 list.add(arr[right]);
 
-                    set.add(list);
-                    left++;
-                    right--;
-                }
+    //                 set.add(list);
+    //                 left++;
+    //                 right--;
+    //             }
 
+    //         }
+
+    //     }
+
+    //     return new ArrayList<>(set);
+
+
+    // }
+
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        int length = nums.length;
+
+        // if(n<3){
+        //     return {};
+        // }
+
+        Arrays.sort(nums);
+
+        //fixing the n1 element
+        for(int i = 0;i<length-2;i++){
+
+            if(i>0 && nums[i]==nums[i-1]){
+                continue;
             }
 
+            // int n1 = 
+            int target = -nums[i];
+            int left = i+1;
+            int right = length-1;
+
+            // twosum(arr,target,i+1,length-1);
+            while(left<right){
+            if(nums[left]+nums[right]<target){
+                left++;
+            }
+            else if(nums[left]+nums[right]>target){
+                right--;
+            }
+            else{
+                //remove duplicates from either end left or right
+                while(left<right && nums[left]==nums[left+1]) left++;
+                while(left<right && nums[right]==nums[right-1]) right--;
+               result.add(Arrays.asList(-target, nums[left], nums[right]));
+               left++;
+               right--;
+            }
         }
-
-        return new ArrayList<>(set);
-
+        }
+        return result;
 
     }
+
+
+    // void twosum(int[] nums,int target,int left,int right){
+        
+    // }
 
 
 }
