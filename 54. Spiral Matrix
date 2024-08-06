@@ -2,47 +2,97 @@ class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
 
     ArrayList<Integer> list=new ArrayList<>(); 
-     int stC=0;
+    int stC=0;
     int stR=0;
     int enR=matrix.length-1;
     int enC=matrix[0].length-1;
+    int count = 0;
+    int totalelement = (enR+1)*(enC+1);
+    
+    while(count<totalelement){
 
-    while((stC<=enC)&&(stR<=enR)){
-        // top
-        for (int i = stC; i <=enC; i++) {
-            
-            list.add(matrix[stR][i]);
+        //print top row from stC-->enC
+        for(int j = stC;j<=enC && count<totalelement ;j++){
+            list.add(matrix[stR][j]);
+            count++;
         }
-        
-        // right
-        for (int i = stR+1; i <=enR; i++) {
-            
-            list.add(matrix[i][enC]);
-        }
-
-        // bottom
-        for (int i =enC-1; i >=stC; i--) {
-            if(stR==enR){
-                break;
-            }
-           
-            list.add(matrix[enR][i]);
-        }
-       
-        // left
-        for (int i = enR-1; i >=stR+1 ; i--) {
-            if(enC==stC){
-                break;
-            }
-         
-         list.add(matrix[i][stC]); 
-        }
-       
         stR++;
-        stC++;
-        enR--;
+        //print right column
+        for(int j = stR;j<=enR && count<totalelement ;j++){
+            list.add(matrix[j][enC]);
+            count++;
+        }
         enC--;
+        //print bottom row
+        for(int j = enC;j>=stC && count<totalelement ;j--){
+            list.add(matrix[enR][j]);
+            count++;
+        }
+        enR--;
+        //print left column
+        for(int j = enR;j>=stR && count<totalelement ;j--){
+            list.add(matrix[j][stC]);
+            count++;
+        }
+        stC++;
     }
-        return list;
+
+return list;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // while((stC<=enC)&&(stR<=enR)){
+    //     // top
+    //     for (int i = stC; i <=enC; i++) {
+            
+    //         list.add(matrix[stR][i]);
+    //     }
+        
+    //     // right
+    //     for (int i = stR+1; i <=enR; i++) {
+            
+    //         list.add(matrix[i][enC]);
+    //     }
+
+    //     // bottom
+    //     for (int i =enC-1; i >=stC; i--) {
+    //         if(stR==enR){
+    //             break;
+    //         }
+           
+    //         list.add(matrix[enR][i]);
+    //     }
+       
+    //     // left
+    //     for (int i = enR-1; i >=stR+1 ; i--) {
+    //         if(enC==stC){
+    //             break;
+    //         }
+         
+    //      list.add(matrix[i][stC]); 
+    //     }
+       
+    //     stR++;
+    //     stC++;
+    //     enR--;
+    //     enC--;
+    // }
+    //     return list;
+
+
 }
 }
