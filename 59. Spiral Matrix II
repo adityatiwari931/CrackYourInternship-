@@ -1,0 +1,40 @@
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] result = new int[n][n];
+        int strtrow = 0;
+        int strtcol = 0;
+        int endrow = n-1;
+        int endcol = n-1;
+        int count = 1;
+
+        while(count<=n*n){
+
+            //toprow
+            for(int j = strtcol;j<=endcol && count<=n*n;j++){
+                result[strtrow][j] = count;
+                count++;
+            }
+            strtrow++;
+            //rightcol
+            for(int j = strtrow;j<=endrow && count<=n*n;j++){
+                result[j][endcol] = count;
+                count++;
+            }
+            endcol--;
+            //bottom row
+            for(int j = endcol;j>=strtcol && count<=n*n;j--){
+                result[endrow][j] = count;
+                count++;
+            }
+            endrow--;
+            //leftcolumn
+            for(int j = endrow;j>=strtrow && count<=n*n;j--){
+                result[j][strtcol] = count;
+                count++;
+            }
+            strtcol++;
+        }
+
+        return result;
+    }
+}
